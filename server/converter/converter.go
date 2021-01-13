@@ -6,9 +6,13 @@ import (
 )
 
 type outputData struct {
-	key  *models.KeyData         `json: "key"`
-	data []*models.CollectedData `json: "data"`
+	Key  *models.KeyData         `json:"key"`
+	Data []*models.CollectedData `json:"data"`
 }
+
+// type outputData struct {
+// 	Value int `json: "value"`
+// }
 
 type JsonConverter struct {
 	key  *models.KeyData
@@ -20,11 +24,12 @@ func NewJsonConverter(key *models.KeyData, data []*models.CollectedData) *JsonCo
 }
 
 func (jc *JsonConverter) Convert() ([]byte, error) {
-	o := &outputData{
-		key:  jc.key,
-		data: jc.data,
+	o := outputData{
+		Key:  jc.key,
+		Data: jc.data,
 	}
-	content, err := json.Marshal(o)
+	// o := outputData{Value: 4}
+	content, err := json.MarshalIndent(o, "", "  ")
 	if err != nil {
 		return nil, err
 	}

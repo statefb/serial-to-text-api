@@ -17,8 +17,8 @@ type FTPSender struct {
 
 func NewFTPSender() *FTPSender {
 	return &FTPSender{
-		TargetPath: "test/test.txt",
-		Uri:        "localhost:21",
+		TargetPath: "test.json",
+		Uri:        "ftp:21",
 		Name:       "anonymous",
 		Password:   "password",
 	}
@@ -36,14 +36,15 @@ func (s *FTPSender) Send() error {
 		return err
 	}
 
+	kd := data.GetKeyData()
+	cd := data.GetData()
 	converter := converter.NewJsonConverter(
-		data.GetKeyData(), data.GetData(),
+		kd, cd,
 	)
 	content, err := converter.Convert()
 	if err != nil {
 		return err
 	}
-
 	reader := bytes.NewReader(content)
 
 	err = client.Stor(s.TargetPath, reader)
