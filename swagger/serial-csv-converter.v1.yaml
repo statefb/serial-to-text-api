@@ -1,0 +1,166 @@
+swagger: '2.0'
+info:
+  title: serial-csv-converter
+  version: '1.0'
+host: 'localhost:3000'
+schemes:
+  - http
+produces:
+  - application/json
+consumes:
+  - application/json
+paths:
+  /start:
+    put:
+      summary: start collecting data
+      tags:
+        - Common
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties: {}
+        default:
+          schema:
+            $ref: '#/definitions/Error_V1'
+          description: Unexpected error
+      operationId: put-start
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/KeyData'
+          description: ''
+  /stop:
+    put:
+      summary: stop collecting data.
+      tags:
+        - Common
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties: {}
+        default:
+          schema:
+            $ref: '#/definitions/Error_V1'
+          description: Unexpected error
+      operationId: put-stop
+  /status:
+    get:
+      summary: get current status.
+      tags:
+        - Common
+      responses:
+        '200':
+          description: OK
+          schema:
+            enum:
+              - waiting
+              - collecting
+              - sending
+              - error
+            type: string
+        default:
+          schema:
+            $ref: '#/definitions/Error_V1'
+          description: Unexpected error
+      operationId: get-status
+      description: ''
+      parameters: []
+  /reset:
+    put:
+      summary: reset status.
+      tags:
+        - Common
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties: {}
+        default:
+          schema:
+            $ref: '#/definitions/Error_V1'
+          description: Unexpected error
+      operationId: put-reset
+  /data:
+    get:
+      summary: get current collected data.
+      tags:
+        - Common
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CollectedData'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error_V1'
+      operationId: get-data
+  /send:
+    put:
+      summary: send file to specified location.
+      tags:
+        - Common
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties: {}
+        default:
+          schema:
+            $ref: '#/definitions/Error_V1'
+          description: Unexpected error
+      operationId: put-send
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CollectedData'
+definitions:
+  KeyData:
+    title: KeyData
+    type: object
+    properties:
+      lotId:
+        type: string
+      bagId:
+        type: string
+    required:
+      - lotId
+      - bagId
+  CollectedData:
+    title: CollectedData
+    type: object
+    properties:
+      timestamp:
+        type: string
+        format: date-time
+      value:
+        type: number
+    required:
+      - timestamp
+      - value
+  Error_V1:
+    title: Error
+    type: object
+    description: A standard error object.
+    x-tags:
+      - Common
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+    required:
+      - code
+      - message
