@@ -28,17 +28,25 @@ func (s *CustomSerialPort) Read(b []byte) (int, error) {
 
 // SerialPort interface implementation
 func (s *CustomSerialPort) Readline(size int) (string, error) {
-	buf := make([]byte, size)
-	n, err := s.Read(buf)
-	if err != nil {
-		log.Fatal(err)
+	str := ""
+	for {
+		buf := make([]byte, size)
+		n, err := s.Read(buf)
+		if err != nil {
+			return "", err
+		}
+		str = str + string(buf[:n])
+		log.Printf(str)
+		if strings.Contains(str, "\r\n") {
+			return str, nil
+		}
 	}
-	str := string(buf[:n])
-	// split by return code
-	splitted := strings.Split(str, "\r\n")
-	log.Printf("splitted signal: \r\n")
-	for i, sp := range splitted {
-		log.Printf(string(i) + ": " + sp)
-	}
-	return splitted[0], err
+
+	// // split by return code
+	// splitted := strings.Split(str, "\r\n")
+	// log.Printf("splitted signal: \r\n")
+	// for i, sp := range splitted {
+	// 	log.Printf(string(i) + ": " + sp)
+	// }
+	// return str, err
 }

@@ -47,7 +47,15 @@ func (s *FTPSender) Send() error {
 	}
 	reader := bytes.NewReader(content)
 
-	err = client.Stor(s.TargetPath, reader)
+	// For consistency, generate temporary file then rename.
+	// this implementation expects that the ftp server does not handle file while transportation.
+	// server should not touch files which filename contains "temp".
+	tp := "temp" + randName(15) + ".json"
+	err = client.Stor(tp, reader)
+	if err != nil {
+		return err
+	}
+	err = client.Rename(tp, s.TargetPath)
 	if err != nil {
 		return err
 	}

@@ -1,5 +1,5 @@
-name: /dev/pts/7
-baud: 115200
-databits: 0
+name: COM3
+baud: 9600
+databits: 8
 parity: None
 stopbits: 1

@@ -27,7 +27,7 @@ func Initialize() {
 	// initialize
 	data = nil
 	dchan = make(chan *models.CollectedData, 5)
-	mock := true
+	mock := false
 	s := myserial.GetSerialPort(mock)
 
 	for i := 0; i < cSize; i++ {
@@ -37,9 +37,6 @@ func Initialize() {
 
 func receive(s myserial.SerialPort) {
 	val, err := s.Readline(bSize)
-	if err != nil {
-		log.Fatal(err)
-	}
 	if err != nil {
 		log.Fatal(err)
 	}
