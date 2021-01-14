@@ -4,7 +4,6 @@ import (
 	"app/server/gen/models"
 	"app/server/myserial"
 	"log"
-	"strconv"
 	"time"
 
 	"github.com/go-openapi/strfmt"
@@ -37,18 +36,17 @@ func Initialize() {
 }
 
 func receive(s myserial.SerialPort) {
-	str, err := s.Readline(bSize)
+	val, err := s.Readline(bSize)
 	if err != nil {
 		log.Fatal(err)
 	}
-	val, err := strconv.ParseFloat(str, 64)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	record := &models.CollectedData{
 		Timestamp: conv.DateTime(strfmt.DateTime(time.Now())),
-		Value:     swag.Float64(val),
+		Value:     swag.String(val),
 	}
 	dchan <- record
 }

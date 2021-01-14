@@ -6,9 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"bytes"
 	"context"
-	"encoding/json"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -30,30 +28,6 @@ type ErrorV1 struct {
 	// message
 	// Required: true
 	Message *string `json:"message"`
-}
-
-// UnmarshalJSON unmarshals this object while disallowing additional properties from JSON
-func (m *ErrorV1) UnmarshalJSON(data []byte) error {
-	var props struct {
-
-		// code
-		// Required: true
-		Code *string `json:"code"`
-
-		// message
-		// Required: true
-		Message *string `json:"message"`
-	}
-
-	dec := json.NewDecoder(bytes.NewReader(data))
-	dec.DisallowUnknownFields()
-	if err := dec.Decode(&props); err != nil {
-		return err
-	}
-
-	m.Code = props.Code
-	m.Message = props.Message
-	return nil
 }
 
 // Validate validates this error v1

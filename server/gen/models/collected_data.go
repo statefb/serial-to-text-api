@@ -6,9 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"bytes"
 	"context"
-	"encoding/json"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -28,32 +26,7 @@ type CollectedData struct {
 
 	// value
 	// Required: true
-	Value *float64 `json:"value"`
-}
-
-// UnmarshalJSON unmarshals this object while disallowing additional properties from JSON
-func (m *CollectedData) UnmarshalJSON(data []byte) error {
-	var props struct {
-
-		// timestamp
-		// Required: true
-		// Format: date-time
-		Timestamp *strfmt.DateTime `json:"timestamp"`
-
-		// value
-		// Required: true
-		Value *float64 `json:"value"`
-	}
-
-	dec := json.NewDecoder(bytes.NewReader(data))
-	dec.DisallowUnknownFields()
-	if err := dec.Decode(&props); err != nil {
-		return err
-	}
-
-	m.Timestamp = props.Timestamp
-	m.Value = props.Value
-	return nil
+	Value *string `json:"value"`
 }
 
 // Validate validates this collected data

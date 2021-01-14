@@ -217,7 +217,7 @@ func init() {
           "format": "date-time"
         },
         "value": {
-          "type": "number"
+          "type": "string"
         }
       }
     },
@@ -459,7 +459,7 @@ func init() {
           "format": "date-time"
         },
         "value": {
-          "type": "number"
+          "type": "string"
         }
       }
     },
