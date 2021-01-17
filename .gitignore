@@ -1,5 +1,6 @@
 ftp
 .vscode
+server/server
 
 # Binaries for programs and plugins
 *.exe
