@@ -1,0 +1,22 @@
+serial:
+  mock: true
+  maxRecordSize: 10
+  bufferSize: 128
+  endSignature: "\r\n"
+  # name: COM3
+  # baud: 9600
+  # databits: 8
+  # parity: None
+  # stopbits: 1
+  name: /dev/pts/16
+  baud: 115200
+  databits: 0
+  parity: None
+  stopbits: 1
+sender:
+  method: ftp
+  ftp:
+    path: "test.json"
+    uri: "ftp:21"
+    name: anonymous
+    password: password
