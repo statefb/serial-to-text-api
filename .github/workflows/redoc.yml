@@ -6,7 +6,7 @@ jobs:
     name: Build Redoc document
     steps:
       - name: Checkout
-        users: actions/checkout@v2
+        uses: actions/checkout@v2
 
       - name: redoc-cli-github-action
         uses: seeebiii/redoc-cli-github-action@v9
