@@ -7,12 +7,16 @@ import (
 	"github.com/tarm/serial"
 )
 
+var q que
+var end string
+
 // SerialPort implementation (wrapper of serial.Port)
 type CustomSerialPort struct {
 	port *serial.Port
 }
 
-func NewCustomSerialPort(c *serial.Config) *CustomSerialPort {
+func NewCustomSerialPort(c *serial.Config, e string) *CustomSerialPort {
+	end = e
 	p, err := serial.OpenPort(c)
 	if err != nil {
 		panic(err)
@@ -28,6 +32,13 @@ func (s *CustomSerialPort) Read(b []byte) (int, error) {
 
 // SerialPort interface implementation
 func (s *CustomSerialPort) Readline(size int) (string, error) {
+	// try to fetch from que
+	x, err := q.pop()
+	if err == nil {
+		return x.(string), nil
+	}
+	// if que has no element, read from serial port.
+	// loop until get end signature
 	str := ""
 	for {
 		buf := make([]byte, size)
@@ -37,10 +48,17 @@ func (s *CustomSerialPort) Readline(size int) (string, error) {
 		}
 		str = str + string(buf[:n])
 		log.Printf(str)
-		if strings.Contains(str, "\r\n") {
-			return str, nil
+		if strings.Contains(str, end) {
+			break
 		}
 	}
+	// split by end signature
+	splitted := strings.Split(str, end)
+	for _, sp := range splitted {
+		q.push(sp) // hold on que
+	}
+	x, _ = q.pop() // return first element
+	return x.(string), nil
 
 	// // split by return code
 	// splitted := strings.Split(str, "\r\n")
@@ -49,4 +67,8 @@ func (s *CustomSerialPort) Readline(size int) (string, error) {
 	// 	log.Printf(string(i) + ": " + sp)
 	// }
 	// return str, err
+}
+
+func (s *CustomSerialPort) Close() (err error) {
+	return s.port.Close()
 }

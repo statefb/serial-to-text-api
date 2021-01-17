@@ -3,7 +3,6 @@ package data
 import (
 	"app/server/gen/models"
 	"app/server/myserial"
-	"log"
 	"time"
 
 	"github.com/go-openapi/strfmt"
@@ -11,7 +10,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// declare memory to have received data
+// declare memory to keep received data
 var data []*models.CollectedData
 
 // channel to communicate serial goroutine
@@ -30,22 +29,41 @@ func Initialize() {
 	mock := false
 	s := myserial.GetSerialPort(mock)
 
-	for i := 0; i < cSize; i++ {
-		go receive(s)
-	}
+	go receive(s)
+}
+
+// func receive(s myserial.SerialPort) {
+// 	val, err := s.Readline(bSize)
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
+
+// 	record := &models.CollectedData{
+// 		Timestamp: conv.DateTime(strfmt.DateTime(time.Now())),
+// 		Value:     swag.String(val),
+// 	}
+// 	dchan <- record
+// }
+
+func Close() error {
+	close(dchan)
+	// TODO: close serial port
+	return nil
 }
 
 func receive(s myserial.SerialPort) {
-	val, err := s.Readline(bSize)
-	if err != nil {
-		log.Fatal(err)
-	}
+	for i := 0; i < cSize; i++ {
+		val, err := s.Readline(bSize)
+		if err != nil {
+			panic(err)
+		}
 
-	record := &models.CollectedData{
-		Timestamp: conv.DateTime(strfmt.DateTime(time.Now())),
-		Value:     swag.String(val),
+		record := &models.CollectedData{
+			Timestamp: conv.DateTime(strfmt.DateTime(time.Now())),
+			Value:     swag.String(val),
+		}
+		dchan <- record
 	}
-	dchan <- record
 }
 
 func GetData() []*models.CollectedData {
