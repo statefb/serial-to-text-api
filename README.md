@@ -12,6 +12,11 @@ TODO
 
 WIP
 
+## Usage
+
+
+
 ## Example
 
-WIP
+## Documents
+* [API](https://statefb.github.io/serial-to-text-api/)
