@@ -1,5 +1,4 @@
-name: redoc-action
-on: [push]
+name: redoc
 jobs:
   build-redoc:
     runs-on: ubuntu-latest
