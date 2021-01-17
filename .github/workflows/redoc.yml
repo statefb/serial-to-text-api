@@ -1,4 +1,5 @@
 name: redoc
+on: [push]
 jobs:
   build-redoc:
     runs-on: ubuntu-latest
