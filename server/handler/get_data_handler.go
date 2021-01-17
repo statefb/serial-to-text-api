@@ -2,6 +2,7 @@ package handler
 
 import (
 	"app/server/data"
+	"app/server/gen/models"
 	"app/server/gen/restapi/serialtocsv/common"
 	"app/server/states"
 
@@ -24,6 +25,9 @@ func (h *GetDataHandler) Handle(params common.GetDataParams) middleware.Responde
 	if !found {
 		return CreateDefaultError("state must be waiting.")
 	}
-	payload := data.GetData()
+	payload := []*models.CollectedData{}
+	for _, x := range data.GetData() {
+		payload = append(payload, &x)
+	}
 	return common.NewGetDataOK().WithPayload(payload)
 }

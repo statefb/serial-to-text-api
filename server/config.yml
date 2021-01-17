@@ -11,10 +11,10 @@ serial:
   databits: 0
   parity: None
   stopbits: 1
-# sender:
-#   method: ftp
-#   ftp:
-#     path: "test.json"
-#     uri: "ftp:21"
-#     name: anonymous
-#     password: password
+sender:
+  method: ftp
+  ftp:
+    path: "test.json"
+    uri: "ftp:21"
+    name: anonymous
+    password: password

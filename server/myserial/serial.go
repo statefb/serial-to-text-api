@@ -55,18 +55,11 @@ func (s *CustomSerialPort) Readline(size int) (string, error) {
 	// split by end signature
 	splitted := strings.Split(str, end)
 	for _, sp := range splitted {
+		log.Printf(sp)
 		q.push(sp) // hold on que
 	}
 	x, _ = q.pop() // return first element
 	return x.(string), nil
-
-	// // split by return code
-	// splitted := strings.Split(str, "\r\n")
-	// log.Printf("splitted signal: \r\n")
-	// for i, sp := range splitted {
-	// 	log.Printf(string(i) + ": " + sp)
-	// }
-	// return str, err
 }
 
 func (s *CustomSerialPort) Close() (err error) {

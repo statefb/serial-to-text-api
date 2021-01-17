@@ -8,6 +8,7 @@ import (
 
 	"app/server/gen/restapi"
 	"app/server/gen/restapi/serialtocsv"
+
 	"github.com/go-openapi/loads"
 	flags "github.com/jessevdk/go-flags"
 )
@@ -52,5 +53,4 @@ func main() {
 	if err := server.Serve(); err != nil {
 		log.Fatalln(err)
 	}
-
 }

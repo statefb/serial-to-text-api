@@ -15,9 +15,14 @@ func (h *PutStartHandler) Handle(params common.PutStartParams) middleware.Respon
 		return CreateDefaultError("state must be waiting.")
 	}
 	// memorize lot info
-	data.SetKeyData(params.Body)
+	data.SetKeyData(*params.Body)
+	// open serial
+	err := data.Open()
+	if err != nil {
+		panic(err)
+	}
 	// start collecting data
-	data.Initialize()
+	data.Start()
 
 	states.SetState(states.Collecting)
 	return common.NewPutStartOK()

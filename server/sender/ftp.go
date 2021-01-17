@@ -1,6 +1,7 @@
 package sender
 
 import (
+	"app/server/config"
 	"app/server/converter"
 	"app/server/data"
 	"bytes"
@@ -16,20 +17,20 @@ type FTPSender struct {
 }
 
 func NewFTPSender() *FTPSender {
-	// s := config.NewConf()
-	// ftp := s.Sender.Ftp
-	// return &FTPSender{
-	// 	TargetPath: ftp.Path,
-	// 	Uri:        ftp.Uri,
-	// 	Name:       ftp.Name,
-	// 	Password:   ftp.Password,
-	// }
+	s := config.NewConf()
+	ftp := s.Sender.Ftp
 	return &FTPSender{
-		TargetPath: "test.json",
-		Uri:        "ftp:21",
-		Name:       "anonymous",
-		Password:   "password",
+		TargetPath: ftp.Path,
+		Uri:        ftp.Uri,
+		Name:       ftp.Name,
+		Password:   ftp.Password,
 	}
+	// return &FTPSender{
+	// 	TargetPath: "test.json",
+	// 	Uri:        "ftp:21",
+	// 	Name:       "anonymous",
+	// 	Password:   "password",
+	// }
 }
 
 func (s *FTPSender) Send() error {
@@ -47,7 +48,7 @@ func (s *FTPSender) Send() error {
 	kd := data.GetKeyData()
 	cd := data.GetData()
 	converter := converter.NewJsonConverter(
-		kd, cd,
+		&kd, &cd,
 	)
 	content, err := converter.Convert()
 	if err != nil {
@@ -56,7 +57,7 @@ func (s *FTPSender) Send() error {
 	reader := bytes.NewReader(content)
 
 	// For consistency, generate temporary file then rename.
-	// this implementation expects that the ftp server does not handle file while transportation.
+	// this implementation expects that the ftp server does not handle file while transfer.
 	// server should not touch files which filename contains "temp".
 	tp := "temp" + randName(15) + ".json"
 	err = client.Stor(tp, reader)

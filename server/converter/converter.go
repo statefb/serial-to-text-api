@@ -7,7 +7,7 @@ import (
 
 type outputData struct {
 	Key  *models.KeyData         `json:"key"`
-	Data []*models.CollectedData `json:"data"`
+	Data *[]models.CollectedData `json:"data"`
 }
 
 // type outputData struct {
@@ -16,10 +16,10 @@ type outputData struct {
 
 type JsonConverter struct {
 	key  *models.KeyData
-	data []*models.CollectedData
+	data *[]models.CollectedData
 }
 
-func NewJsonConverter(key *models.KeyData, data []*models.CollectedData) *JsonConverter {
+func NewJsonConverter(key *models.KeyData, data *[]models.CollectedData) *JsonConverter {
 	return &JsonConverter{key, data}
 }
 
