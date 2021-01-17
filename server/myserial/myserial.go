@@ -11,12 +11,14 @@ type SerialPort interface {
 	Close() error
 }
 
-func GetSerialPort(mock bool, end string) SerialPort {
-	c := GetConf(config.SerialConfPath, true)
-	if mock {
+func GetSerialPort() SerialPort {
+	// c := GetConf(config.SerialConfPath, true)
+	s := config.NewConf()
+	if s.Serial.Mock {
 		log.Printf("using dummy serial port.")
 		return NewDummySerialPort()
 	} else {
-		return NewCustomSerialPort(c, end)
+		sc := s.GetSerialConf()
+		return NewCustomSerialPort(sc, s.Serial.EndSignature)
 	}
 }

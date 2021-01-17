@@ -16,6 +16,14 @@ type FTPSender struct {
 }
 
 func NewFTPSender() *FTPSender {
+	// s := config.NewConf()
+	// ftp := s.Sender.Ftp
+	// return &FTPSender{
+	// 	TargetPath: ftp.Path,
+	// 	Uri:        ftp.Uri,
+	// 	Name:       ftp.Name,
+	// 	Password:   ftp.Password,
+	// }
 	return &FTPSender{
 		TargetPath: "test.json",
 		Uri:        "ftp:21",

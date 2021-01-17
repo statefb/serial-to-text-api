@@ -1,0 +1,11 @@
+{
+  "serial": {
+    "mock": true,
+    "endSignature": "\r\n",
+    "name": "/dev/pts/16",
+    "baud": 115200,
+    "databits": 0,
+    "parity": "None",
+    "stopbits": 1
+  }
+}

@@ -1,12 +1,15 @@
 package sender
 
-import "github.com/pkg/errors"
+import (
+	"github.com/pkg/errors"
+)
 
 type Sender interface {
 	Send() error
 }
 
 func GetSender() (Sender, error) {
+	// stype := config.NewConf().Sender.Method
 	stype := "ftp"
 	if stype == "ftp" {
 		return NewFTPSender(), nil

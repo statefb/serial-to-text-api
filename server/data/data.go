@@ -26,8 +26,7 @@ func Initialize() {
 	// initialize
 	data = nil
 	dchan = make(chan *models.CollectedData, 5)
-	mock := false
-	s := myserial.GetSerialPort(mock)
+	s := myserial.GetSerialPort()
 
 	go receive(s)
 }
