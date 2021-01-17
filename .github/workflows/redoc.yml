@@ -1,0 +1,19 @@
+name: redoc-action
+on: [push]
+jobs:
+  build-redoc:
+    runs-on: ubuntu-latest
+    name: Build Redoc document
+    steps:
+      - name: Checkout
+        users: actions/checkout@v2
+
+      - name: redoc-cli-github-action
+        uses: seeebiii/redoc-cli-github-action@v9
+        with:
+          args: 'bundle swagger/serial-csv-converter.v1.yaml -o serial-csv-converter.html'
+
+      - name: check result
+        run: |
+          ls -al
+          test -f serial-csv-converter.html || (echo "Missing serial-csv-converter.html from previous step." && exit 1)
