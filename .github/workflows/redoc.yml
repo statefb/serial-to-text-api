@@ -11,12 +11,12 @@ jobs:
       - name: Redoc cli github action
         uses: seeebiii/redoc-cli-github-action@v9
         with:
-          args: 'bundle swagger/serial-csv-converter.v1.yaml -o serial-csv-converter.html'
+          args: 'bundle swagger/serial-csv-converter.v1.yaml -o index.html'
 
       - name: Check build result
         run: |
           ls -al
-          test -f serial-csv-converter.html || (echo "Missing serial-csv-converter.html from previous step." && exit 1)
+          test -f index.html || (echo "Missing index.html from previous step." && exit 1)
 
       - name: Deploy to github pages
         uses: peaceiris/actions-gh-pages@v3
