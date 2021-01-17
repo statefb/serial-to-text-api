@@ -25,12 +25,6 @@ func NewFTPSender() *FTPSender {
 		Name:       ftp.Name,
 		Password:   ftp.Password,
 	}
-	// return &FTPSender{
-	// 	TargetPath: "test.json",
-	// 	Uri:        "ftp:21",
-	// 	Name:       "anonymous",
-	// 	Password:   "password",
-	// }
 }
 
 func (s *FTPSender) Send() error {

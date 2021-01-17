@@ -1,7 +1,0 @@
-method: ftp
-
-ftp:
-  password:
-  username:
-  address:
-  port:

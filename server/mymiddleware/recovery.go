@@ -3,8 +3,9 @@ package mymiddleware
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/labstack/gommon/log"
 	"net/http"
+
+	"github.com/labstack/gommon/log"
 )
 
 func Recovery(next http.Handler) http.Handler {
@@ -14,8 +15,8 @@ func Recovery(next http.Handler) http.Handler {
 				log.Errorf("panic catch: %v", err)
 
 				resp, _ := json.Marshal(map[string]string{
-					"error": fmt.Sprintf("Internal Server Error: %v", err),
-					"code":  "000500", // 予期せぬエラー
+					"message": fmt.Sprintf("Internal Server Error: %v", err),
+					"code":    "500", // 予期せぬエラー
 				})
 
 				w.Header().Set("Content-Type", "application/json")

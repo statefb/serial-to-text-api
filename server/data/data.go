@@ -1,6 +1,7 @@
 package data
 
 import (
+	"app/server/config"
 	"app/server/gen/models"
 	"app/server/myserial"
 	"time"
@@ -20,14 +21,18 @@ var data []models.CollectedData
 var dchan chan models.CollectedData
 
 // channel size (i.e. max buffer size to keep)
-var cSize int = 10
+var cSize int
 
 // buffer size to read serial
-var bSize int = 128
+var bSize int
 
+// whether port is opened
 var opened = false
 
 func Start() {
+	s := config.NewConf().Serial
+	cSize = s.MaxRecordSize
+	bSize = s.BufferSize
 	// start collecting data from serial
 	go func() {
 		for i := 0; i < cSize; i++ {

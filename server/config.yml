@@ -1,5 +1,7 @@
 serial:
   mock: true
+  maxRecordSize: 10
+  bufferSize: 128
   endSignature: "\r\n"
   # name: COM3
   # baud: 9600

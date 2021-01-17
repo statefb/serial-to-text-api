@@ -1,6 +1,8 @@
 package sender
 
 import (
+	"app/server/config"
+
 	"github.com/pkg/errors"
 )
 
@@ -9,10 +11,10 @@ type Sender interface {
 }
 
 func GetSender() (Sender, error) {
-	// stype := config.NewConf().Sender.Method
-	stype := "ftp"
-	if stype == "ftp" {
+	method := config.NewConf().Sender.Method
+	switch method {
+	case "ftp":
 		return NewFTPSender(), nil
 	}
-	return nil, errors.Errorf("following method is not implemented: %s", stype)
+	return nil, errors.Errorf("following method is not implemented: %s", method)
 }

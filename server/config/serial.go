@@ -7,13 +7,15 @@ import (
 )
 
 type SerialConf struct {
-	Mock         bool   `yaml:"mock"`
-	EndSignature string `yaml:"endSignature"`
-	Name         string `yaml:"name"`
-	Baud         int    `yaml:"baud"`
-	Databits     int    `yaml:"databits"`
-	Parity       string `yaml:"parity"`
-	Stopbits     int    `yaml:"stopbits"`
+	Mock          bool   `yaml:"mock"`
+	MaxRecordSize int    `yaml:"maxRecordSize"`
+	BufferSize    int    `yaml:"bufferSize"`
+	EndSignature  string `yaml:"endSignature"`
+	Name          string `yaml:"name"`
+	Baud          int    `yaml:"baud"`
+	Databits      int    `yaml:"databits"`
+	Parity        string `yaml:"parity"`
+	Stopbits      int    `yaml:"stopbits"`
 }
 
 func getSize(c SerialConf) byte {
