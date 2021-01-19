@@ -4,6 +4,8 @@ import (
 	"app/server/config"
 	"app/server/gen/models"
 	"app/server/myserial"
+	"fmt"
+	"log"
 	"time"
 
 	"github.com/go-openapi/strfmt"
@@ -45,6 +47,7 @@ func Start() {
 				Timestamp: conv.DateTime(strfmt.DateTime(time.Now())),
 				Value:     swag.String(val),
 			}
+			fmt.Printf("record: %+v\n", record)
 			dchan <- record
 		}
 	}()
@@ -52,28 +55,43 @@ func Start() {
 
 func Open() error {
 	if !opened {
-		Reset()
+		data = []models.CollectedData{}
 		// open channel and serial port
 		dchan = make(chan models.CollectedData, 5)
 		sp = myserial.GetSerialPort()
+		opened = true
 		return nil
 	}
 	return nil
 }
 
 func Close() error {
-	Reset()
-	// close channel and serial port
-	close(dchan)
-	err := sp.Close()
-	if err != nil {
-		return err
+	if opened {
+		log.Printf("return data to empty.")
+		data = []models.CollectedData{}
+		// close channel and serial port
+		log.Printf("close channel.")
+		close(dchan)
+		log.Printf("close port.")
+		err := sp.Close()
+		if err != nil {
+			return err
+		}
+		opened = false
 	}
+
 	return nil
 }
 
 func Reset() error {
-	data = []models.CollectedData{}
+	err := Close()
+	if err != nil {
+		return err
+	}
+	err = Open()
+	if err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -82,8 +100,10 @@ func GetData() []models.CollectedData {
 	for {
 		select {
 		case r := <-dchan:
+			fmt.Printf("r: %+v\n", r)
 			data = append(data, r)
 		case <-timeout:
+			fmt.Printf("data: %+v\n", data)
 			return data
 		}
 	}
