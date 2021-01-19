@@ -5,6 +5,7 @@ import (
 	"app/server/gen/models"
 	"app/server/gen/restapi/serialtocsv/common"
 	"app/server/states"
+	"fmt"
 
 	"github.com/go-openapi/runtime/middleware"
 )
@@ -25,9 +26,19 @@ func (h *GetDataHandler) Handle(params common.GetDataParams) middleware.Responde
 	if !found {
 		return CreateDefaultError("state must be waiting.")
 	}
-	payload := []*models.CollectedData{}
-	for _, x := range data.GetData() {
-		payload = append(payload, &x)
+	// payload := []*models.CollectedData{}
+	// payload := make([]*models.CollectedData, config.NewConf().Serial.MaxRecordSize)
+	d := data.GetData()
+	payload := make([]*models.CollectedData, len(d))
+	for i := 0; i < len(d); i++ {
+		payload[i] = &d[i]
 	}
+	// for i, x := range data.GetData() {
+	// 	fmt.Printf("x: %+v\n", x)
+	// 	fmt.Printf("&x: %+v\n", &x)
+	// 	// payload = append(payload, &x)
+	// 	payload[i] = &x
+	// }
+	fmt.Printf("payload: %+v\n", payload)
 	return common.NewGetDataOK().WithPayload(payload)
 }

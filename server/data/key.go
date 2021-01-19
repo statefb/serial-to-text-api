@@ -1,6 +1,9 @@
 package data
 
-import "app/server/gen/models"
+import (
+	"app/server/gen/models"
+	"log"
+)
 
 var keyData models.KeyData
 
@@ -13,5 +16,6 @@ func GetKeyData() models.KeyData {
 }
 
 func ResetKeyData() {
+	log.Printf("reset key data.")
 	keyData = models.KeyData{}
 }

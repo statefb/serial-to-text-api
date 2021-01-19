@@ -35,6 +35,8 @@ func (s *CustomSerialPort) Readline(size int) (string, error) {
 	// try to fetch from que
 	x, err := q.pop()
 	if err == nil {
+		log.Printf("no que")
+		log.Printf(x.(string))
 		return x.(string), nil
 	}
 	// if que has no element, read from serial port.
@@ -47,7 +49,6 @@ func (s *CustomSerialPort) Readline(size int) (string, error) {
 			return "", err
 		}
 		str = str + string(buf[:n])
-		log.Printf(str)
 		if strings.Contains(str, end) {
 			break
 		}
@@ -55,10 +56,15 @@ func (s *CustomSerialPort) Readline(size int) (string, error) {
 	// split by end signature
 	splitted := strings.Split(str, end)
 	for _, sp := range splitted {
-		log.Printf(sp)
+		if sp == "" {
+			// ignore empty string
+			continue
+		}
 		q.push(sp) // hold on que
 	}
 	x, _ = q.pop() // return first element
+	log.Printf("read from serial")
+	log.Printf(x.(string))
 	return x.(string), nil
 }
 
