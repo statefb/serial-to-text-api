@@ -96,7 +96,7 @@ func Reset() error {
 }
 
 func GetData() []models.CollectedData {
-	timeout := time.After(time.Millisecond * time.Duration(1))
+	timeout := time.After(time.Millisecond * 500)
 	for {
 		select {
 		case r := <-dchan:
