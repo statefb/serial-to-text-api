@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"time"
 
 	"github.com/tarm/serial"
 	"gopkg.in/yaml.v2"
@@ -48,7 +49,7 @@ func (c *Conf) GetSerialConf() *serial.Config {
 		Parity:   getParity(s),
 		StopBits: getStopbits(s),
 		// NOTE: Setting `ReadTimeout` will not block on goroutine. Keep comment out.
-		// ReadTimeout: time.Millisecond * 5000,
+		ReadTimeout: time.Millisecond * 1000,
 	}
 	return sc
 }

@@ -1,3 +1,7 @@
+# TODO
+goroutineを使わず、自前でタイムアウト（serial.Read）
+
+
 ## memo
 
 - Run following command inside docker on work folder:  

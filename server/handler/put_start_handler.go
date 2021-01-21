@@ -16,11 +16,6 @@ func (h *PutStartHandler) Handle(params common.PutStartParams) middleware.Respon
 	}
 	// memorize lot info
 	data.SetKeyData(*params.Body)
-	// open serial
-	err := data.Open()
-	if err != nil {
-		panic(err)
-	}
 	// start collecting data
 	data.Start()
 
