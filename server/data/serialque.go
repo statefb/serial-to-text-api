@@ -1,4 +1,4 @@
-package myserial
+package data
 
 import "errors"
 
