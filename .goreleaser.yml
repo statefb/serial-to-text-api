@@ -3,7 +3,6 @@ env:
   - GO111MODULE=on
 before:
   hooks:
-    - cd server
     - go mod download
 builds:
   - dir: server
