@@ -5,7 +5,7 @@ before:
   hooks:
     - go mod download
 builds:
-  - dir: server
+  - dir: .
     binary: serial-to-text
     ldflags:
       - -s -w
