@@ -1,11 +1,12 @@
 package handler
 
 import (
-	"app/server/data"
-	"app/server/gen/models"
-	"app/server/gen/restapi/serialtocsv/common"
-	"app/server/states"
 	"fmt"
+
+	"local.packages/data"
+	"local.packages/gen/models"
+	"local.packages/gen/restapi/serialtocsv/common"
+	"local.packages/states"
 
 	"github.com/go-openapi/runtime/middleware"
 )

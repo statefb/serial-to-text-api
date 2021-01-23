@@ -1,10 +1,11 @@
 package sender
 
 import (
-	"app/server/config"
-	"app/server/converter"
-	"app/server/data"
 	"bytes"
+
+	"local.packages/config"
+	"local.packages/converter"
+	"local.packages/data"
 
 	"github.com/jlaffaye/ftp"
 )

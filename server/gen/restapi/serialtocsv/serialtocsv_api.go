@@ -19,7 +19,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"app/server/gen/restapi/serialtocsv/common"
+	"local.packages/gen/restapi/serialtocsv/common"
 )
 
 // NewSerialtocsvAPI creates a new Serialtocsv instance

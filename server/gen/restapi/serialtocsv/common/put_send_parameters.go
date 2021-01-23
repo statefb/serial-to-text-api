@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/middleware"
 
-	"app/server/gen/models"
+	"local.packages/gen/models"
 )
 
 // NewPutSendParams creates a new PutSendParams object

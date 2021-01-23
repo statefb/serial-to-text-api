@@ -10,10 +10,10 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/middleware"
 
-	"app/server/gen/restapi/serialtocsv"
-	"app/server/gen/restapi/serialtocsv/common"
-	"app/server/handler"
-	"app/server/mymiddleware"
+	"local.packages/gen/restapi/serialtocsv"
+	"local.packages/gen/restapi/serialtocsv/common"
+	"local.packages/handler"
+	"local.packages/mymiddleware"
 )
 
 //go:generate swagger generate server --target ../../gen --name Serialtocsv --spec ../../../swagger/serial-csv-converter.v1.yaml --api-package serialtocsv --principal interface{}

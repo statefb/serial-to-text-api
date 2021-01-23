@@ -1,8 +1,9 @@
 package data
 
 import (
-	"app/server/gen/models"
 	"log"
+
+	"local.packages/gen/models"
 )
 
 var keyData models.KeyData
