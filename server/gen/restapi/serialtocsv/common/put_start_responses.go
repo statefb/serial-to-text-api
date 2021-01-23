@@ -10,7 +10,7 @@ import (
 
 	"github.com/go-openapi/runtime"
 
-	"app/server/gen/models"
+	"local.packages/gen/models"
 )
 
 // PutStartOKCode is the HTTP code returned for type PutStartOK

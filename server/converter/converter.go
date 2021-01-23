@@ -1,8 +1,9 @@
 package converter
 
 import (
-	"app/server/gen/models"
 	"encoding/json"
+
+	"local.packages/gen/models"
 )
 
 type outputData struct {

@@ -1,12 +1,13 @@
 package data
 
 import (
-	"app/server/config"
-	"app/server/gen/models"
 	"context"
 	"log"
 	"strings"
 	"time"
+
+	"local.packages/config"
+	"local.packages/gen/models"
 
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/strfmt/conv"

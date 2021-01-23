@@ -1,8 +1,9 @@
 package data
 
 import (
-	"app/server/config"
 	"context"
+
+	"local.packages/config"
 )
 
 type SerialPort interface {

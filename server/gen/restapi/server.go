@@ -25,7 +25,7 @@ import (
 	flags "github.com/jessevdk/go-flags"
 	"golang.org/x/net/netutil"
 
-	"app/server/gen/restapi/serialtocsv"
+	"local.packages/gen/restapi/serialtocsv"
 )
 
 const (

@@ -1,11 +1,12 @@
 package data
 
 import (
-	"app/server/config"
-	"app/server/gen/models"
 	"context"
 	"fmt"
 	"log"
+
+	"local.packages/config"
+	"local.packages/gen/models"
 )
 
 var ctx context.Context
