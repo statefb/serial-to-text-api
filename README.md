@@ -100,12 +100,16 @@ res = requests.put(url + 'reset')
     * parity: Parity. Should be one of "None", "Odd" or "Even".
     * stopbits: Length of Stopbit. Should be one of "1", "2" or "15"(1 and half).
 * sender
-    * method: Method to send signal. Should be "ftp". Of course, ftp is not recommended if place the server on the internet.
+    * method: Method to send signal. Should be "ftp" or "local". 
+        * Of course, ftp is not recommended if place the server on the internet.
+        * If choose local, the output file will be saved on the local directory.
     * ftp
         * path: Path to save.
         * uri: URI for ftp server in the form of "\<address>:\<port>".
         * name: User name.
         * password: Password to login.
+    * local
+        * path: Path to save.
 
 ## Other References
 * [API Reference](https://statefb.github.io/serial-to-text-api/)
