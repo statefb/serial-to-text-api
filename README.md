@@ -10,8 +10,7 @@ Convert serial streaming into text format such as csv, json with key data.
 TODO
 
 ## Features
-
-WIP
+* Run on both Windows and Linux
 
 ## Install
 You can choose from one of the following ways:
@@ -83,11 +82,10 @@ res = requests.put(url + 'send')
     }
   ]
 }
+"""
 
 # NOTE: run reset before next lot.
 res = requests.put(url + 'reset')
-"""
-
 ```
 
 ## Configuration
@@ -105,7 +103,7 @@ res = requests.put(url + 'reset')
     * method: Method to send signal. Should be "ftp". Of course, ftp is not recommended if place the server on the internet.
     * ftp
         * path: Path to save.
-        * uri: URI for ftp server in the form of "<address>:<port>".
+        * uri: URI for ftp server in the form of "\<address>:\<port>".
         * name: User name.
         * password: Password to login.
 

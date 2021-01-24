@@ -26,6 +26,10 @@ func getParity(c SerialConf) serial.Parity {
 	switch c.Parity {
 	case "None":
 		return serial.ParityNone
+	case "Odd":
+		return serial.ParityOdd
+	case "Even":
+		return serial.ParityEven
 	default:
 		log.Printf("default parity selected: None")
 		return serial.ParityNone
