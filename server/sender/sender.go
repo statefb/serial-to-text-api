@@ -15,6 +15,9 @@ func GetSender() (Sender, error) {
 	switch method {
 	case "ftp":
 		return NewFTPSender(), nil
+	case "local":
+		return NewLocalSender(), nil
 	}
+
 	return nil, errors.Errorf("following method is not implemented: %s", method)
 }
