@@ -6,8 +6,8 @@ import (
 	"log"
 	"os"
 
-	"app/server/gen/restapi"
-	"app/server/gen/restapi/serialtocsv"
+	"local.packages/gen/restapi"
+	"local.packages/gen/restapi/serialtocsv"
 
 	"github.com/go-openapi/loads"
 	flags "github.com/jessevdk/go-flags"

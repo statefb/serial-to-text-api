@@ -1,9 +1,9 @@
 package handler
 
 import (
-	"app/server/gen/restapi/serialtocsv/common"
-	"app/server/sender"
-	"app/server/states"
+	"local.packages/gen/restapi/serialtocsv/common"
+	"local.packages/sender"
+	"local.packages/states"
 
 	"github.com/go-openapi/runtime/middleware"
 )

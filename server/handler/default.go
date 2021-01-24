@@ -1,8 +1,8 @@
 package handler
 
 import (
-	"app/server/gen/models"
-	"app/server/gen/restapi/serialtocsv/common"
+	"local.packages/gen/models"
+	"local.packages/gen/restapi/serialtocsv/common"
 
 	"github.com/go-openapi/swag"
 )

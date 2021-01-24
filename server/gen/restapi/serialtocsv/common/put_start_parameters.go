@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/runtime/middleware"
 	"github.com/go-openapi/validate"
 
-	"app/server/gen/models"
+	"local.packages/gen/models"
 )
 
 // NewPutStartParams creates a new PutStartParams object

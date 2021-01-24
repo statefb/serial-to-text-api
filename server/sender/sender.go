@@ -1,7 +1,7 @@
 package sender
 
 import (
-	"app/server/config"
+	"local.packages/config"
 
 	"github.com/pkg/errors"
 )
