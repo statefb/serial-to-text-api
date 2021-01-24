@@ -1,9 +1,9 @@
 name: release
 on: [push]
-# on: 
-#   push:
-#     tags:
-#     - "v[0-9]+.[0-9]+.[0-9]+"
+on: 
+  push:
+    tags:
+    - "*"
 jobs:
   goreleaser:
     runs-on: ubuntu-latest
