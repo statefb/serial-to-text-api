@@ -1,4 +1,5 @@
 ![redoc](https://github.com/statefb/serial-to-text-api/workflows/redoc/badge.svg?branch=master)
+![release](https://github.com/statefb/serial-to-text-api/workflows/release/badge.svg)
 
 # Serial to text API
 
