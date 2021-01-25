@@ -6,6 +6,7 @@ import (
 	"local.packages/config"
 	"local.packages/converter"
 	"local.packages/data"
+	"local.packages/gen/models"
 )
 
 type LocalSender struct {
@@ -20,9 +21,9 @@ func NewLocalSender() *LocalSender {
 	}
 }
 
-func (s *LocalSender) Send() error {
+func (s *LocalSender) Send(body []*models.CollectedData) error {
 	kd := data.GetKeyData()
-	cd := data.GetData()
+	cd := convertCollectData(body)
 	converter := converter.NewJsonConverter(
 		&kd, &cd,
 	)

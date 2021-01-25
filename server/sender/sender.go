@@ -1,13 +1,15 @@
 package sender
 
 import (
+	"local.packages/gen/models"
+
 	"local.packages/config"
 
 	"github.com/pkg/errors"
 )
 
 type Sender interface {
-	Send() error
+	Send([]*models.CollectedData) error
 }
 
 func GetSender() (Sender, error) {

@@ -20,7 +20,7 @@ func (h *PutSendHandler) Handle(params common.PutSendParams) middleware.Responde
 	}
 
 	// TODO: data to send must be request body
-	err = sender.Send()
+	err = sender.Send(params.Body)
 	if err != nil {
 		panic(err)
 	}
