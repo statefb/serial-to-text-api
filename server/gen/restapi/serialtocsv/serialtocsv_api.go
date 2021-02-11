@@ -56,6 +56,9 @@ func NewSerialtocsvAPI(spec *loads.Document) *SerialtocsvAPI {
 		CommonPutSendHandler: common.PutSendHandlerFunc(func(params common.PutSendParams) middleware.Responder {
 			return middleware.NotImplemented("operation common.PutSend has not yet been implemented")
 		}),
+		CommonPutSendallHandler: common.PutSendallHandlerFunc(func(params common.PutSendallParams) middleware.Responder {
+			return middleware.NotImplemented("operation common.PutSendall has not yet been implemented")
+		}),
 		CommonPutStartHandler: common.PutStartHandlerFunc(func(params common.PutStartParams) middleware.Responder {
 			return middleware.NotImplemented("operation common.PutStart has not yet been implemented")
 		}),
@@ -104,6 +107,8 @@ type SerialtocsvAPI struct {
 	CommonPutResetHandler common.PutResetHandler
 	// CommonPutSendHandler sets the operation handler for the put send operation
 	CommonPutSendHandler common.PutSendHandler
+	// CommonPutSendallHandler sets the operation handler for the put sendall operation
+	CommonPutSendallHandler common.PutSendallHandler
 	// CommonPutStartHandler sets the operation handler for the put start operation
 	CommonPutStartHandler common.PutStartHandler
 	// CommonPutStopHandler sets the operation handler for the put stop operation
@@ -195,6 +200,9 @@ func (o *SerialtocsvAPI) Validate() error {
 	}
 	if o.CommonPutSendHandler == nil {
 		unregistered = append(unregistered, "common.PutSendHandler")
+	}
+	if o.CommonPutSendallHandler == nil {
+		unregistered = append(unregistered, "common.PutSendallHandler")
 	}
 	if o.CommonPutStartHandler == nil {
 		unregistered = append(unregistered, "common.PutStartHandler")
@@ -306,6 +314,10 @@ func (o *SerialtocsvAPI) initHandlerCache() {
 		o.handlers["PUT"] = make(map[string]http.Handler)
 	}
 	o.handlers["PUT"]["/send"] = common.NewPutSend(o.context, o.CommonPutSendHandler)
+	if o.handlers["PUT"] == nil {
+		o.handlers["PUT"] = make(map[string]http.Handler)
+	}
+	o.handlers["PUT"]["/sendall"] = common.NewPutSendall(o.context, o.CommonPutSendallHandler)
 	if o.handlers["PUT"] == nil {
 		o.handlers["PUT"] = make(map[string]http.Handler)
 	}
