@@ -14,7 +14,7 @@ serial:
   parity: None
   stopbits: 1
 sender:
-  method: local
+  method: ftp
   ftp:
     path: "test.json"
     uri: "ftp:21"

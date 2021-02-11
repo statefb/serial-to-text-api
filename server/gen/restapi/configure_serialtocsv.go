@@ -46,6 +46,7 @@ func configureAPI(api *serialtocsv.SerialtocsvAPI) http.Handler {
 	api.CommonGetDataHandler = &handler.GetDataHandler{}
 	api.CommonPutResetHandler = &handler.PutResetHandler{}
 	api.CommonPutSendHandler = &handler.PutSendHandler{}
+	api.CommonPutSendallHandler = &handler.PutSendallHandler{}
 
 	if api.CommonGetDataHandler == nil {
 		api.CommonGetDataHandler = common.GetDataHandlerFunc(func(params common.GetDataParams) middleware.Responder {

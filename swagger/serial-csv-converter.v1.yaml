@@ -23,7 +23,7 @@ paths:
             properties: {}
         default:
           schema:
-            $ref: '#/definitions/Error_V1'
+            $ref: '#/definitions/Error.v1'
           description: Unexpected error
       operationId: put-start
       parameters:
@@ -45,7 +45,7 @@ paths:
             properties: {}
         default:
           schema:
-            $ref: '#/definitions/Error_V1'
+            $ref: '#/definitions/Error.v1'
           description: Unexpected error
       operationId: put-stop
   /status:
@@ -65,7 +65,7 @@ paths:
             type: string
         default:
           schema:
-            $ref: '#/definitions/Error_V1'
+            $ref: '#/definitions/Error.v1'
           description: Unexpected error
       operationId: get-status
       description: ''
@@ -83,7 +83,7 @@ paths:
             properties: {}
         default:
           schema:
-            $ref: '#/definitions/Error_V1'
+            $ref: '#/definitions/Error.v1'
           description: Unexpected error
       operationId: put-reset
   /data:
@@ -101,7 +101,7 @@ paths:
         default:
           description: Unexpected error
           schema:
-            $ref: '#/definitions/Error_V1'
+            $ref: '#/definitions/Error.v1'
       operationId: get-data
   /send:
     put:
@@ -116,7 +116,7 @@ paths:
             properties: {}
         default:
           schema:
-            $ref: '#/definitions/Error_V1'
+            $ref: '#/definitions/Error.v1'
           description: Unexpected error
       operationId: put-send
       parameters:
@@ -126,6 +126,22 @@ paths:
             type: array
             items:
               $ref: '#/definitions/CollectedData'
+  /sendall:
+    put:
+      summary: send all collected data.
+      tags:
+        - Common
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties: {}
+        default:
+          schema:
+            $ref: '#/definitions/Error.v1'
+          description: Unexpected error
+      operationId: put-sendall
 definitions:
   KeyData:
     title: KeyData
@@ -150,7 +166,7 @@ definitions:
     required:
       - timestamp
       - value
-  Error_V1:
+  Error.v1:
     title: Error
     type: object
     description: A standard error object.

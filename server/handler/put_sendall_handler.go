@@ -8,9 +8,9 @@ import (
 	"github.com/go-openapi/runtime/middleware"
 )
 
-type PutSendHandler struct{}
+type PutSendallHandler struct{}
 
-func (h *PutSendHandler) Handle(params common.PutSendParams) middleware.Responder {
+func (h *PutSendallHandler) Handle(params common.PutSendallParams) middleware.Responder {
 	if states.GetState() != states.Waiting {
 		return CreateDefaultError("state must be waiting.")
 	}
@@ -19,10 +19,10 @@ func (h *PutSendHandler) Handle(params common.PutSendParams) middleware.Responde
 		panic(err)
 	}
 
-	err = sender.Send(params.Body)
+	err = sender.SendAll()
 	if err != nil {
 		panic(err)
 	}
 
-	return common.NewPutSendOK()
+	return common.NewPutSendallOK()
 }

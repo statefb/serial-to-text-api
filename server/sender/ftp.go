@@ -67,3 +67,12 @@ func (s *FTPSender) Send(body []*models.CollectedData) error {
 
 	return nil
 }
+
+func (s *FTPSender) SendAll() error {
+	d := data.GetData()
+	dat := make([]*models.CollectedData, len(d))
+	for i := 0; i < len(d); i++ {
+		dat[i] = &d[i]
+	}
+	return s.Send(dat)
+}

@@ -10,6 +10,7 @@ import (
 
 type Sender interface {
 	Send([]*models.CollectedData) error
+	SendAll() error
 }
 
 func GetSender() (Sender, error) {

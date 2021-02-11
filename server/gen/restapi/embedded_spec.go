@@ -54,7 +54,7 @@ func init() {
           "default": {
             "description": "Unexpected error",
             "schema": {
-              "$ref": "#/definitions/Error_V1"
+              "$ref": "#/definitions/Error.v1"
             }
           }
         }
@@ -77,7 +77,7 @@ func init() {
           "default": {
             "description": "Unexpected error",
             "schema": {
-              "$ref": "#/definitions/Error_V1"
+              "$ref": "#/definitions/Error.v1"
             }
           }
         }
@@ -112,7 +112,30 @@ func init() {
           "default": {
             "description": "Unexpected error",
             "schema": {
-              "$ref": "#/definitions/Error_V1"
+              "$ref": "#/definitions/Error.v1"
+            }
+          }
+        }
+      }
+    },
+    "/sendall": {
+      "put": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "send all collected data.",
+        "operationId": "put-sendall",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error.v1"
             }
           }
         }
@@ -144,7 +167,7 @@ func init() {
           "default": {
             "description": "Unexpected error",
             "schema": {
-              "$ref": "#/definitions/Error_V1"
+              "$ref": "#/definitions/Error.v1"
             }
           }
         }
@@ -173,7 +196,7 @@ func init() {
           "default": {
             "description": "Unexpected error",
             "schema": {
-              "$ref": "#/definitions/Error_V1"
+              "$ref": "#/definitions/Error.v1"
             }
           }
         }
@@ -196,7 +219,7 @@ func init() {
           "default": {
             "description": "Unexpected error",
             "schema": {
-              "$ref": "#/definitions/Error_V1"
+              "$ref": "#/definitions/Error.v1"
             }
           }
         }
@@ -221,7 +244,7 @@ func init() {
         }
       }
     },
-    "Error_V1": {
+    "Error.v1": {
       "description": "A standard error object.",
       "type": "object",
       "title": "Error",
@@ -296,7 +319,7 @@ func init() {
           "default": {
             "description": "Unexpected error",
             "schema": {
-              "$ref": "#/definitions/Error_V1"
+              "$ref": "#/definitions/Error.v1"
             }
           }
         }
@@ -319,7 +342,7 @@ func init() {
           "default": {
             "description": "Unexpected error",
             "schema": {
-              "$ref": "#/definitions/Error_V1"
+              "$ref": "#/definitions/Error.v1"
             }
           }
         }
@@ -354,7 +377,30 @@ func init() {
           "default": {
             "description": "Unexpected error",
             "schema": {
-              "$ref": "#/definitions/Error_V1"
+              "$ref": "#/definitions/Error.v1"
+            }
+          }
+        }
+      }
+    },
+    "/sendall": {
+      "put": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "send all collected data.",
+        "operationId": "put-sendall",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error.v1"
             }
           }
         }
@@ -386,7 +432,7 @@ func init() {
           "default": {
             "description": "Unexpected error",
             "schema": {
-              "$ref": "#/definitions/Error_V1"
+              "$ref": "#/definitions/Error.v1"
             }
           }
         }
@@ -415,7 +461,7 @@ func init() {
           "default": {
             "description": "Unexpected error",
             "schema": {
-              "$ref": "#/definitions/Error_V1"
+              "$ref": "#/definitions/Error.v1"
             }
           }
         }
@@ -438,7 +484,7 @@ func init() {
           "default": {
             "description": "Unexpected error",
             "schema": {
-              "$ref": "#/definitions/Error_V1"
+              "$ref": "#/definitions/Error.v1"
             }
           }
         }
@@ -463,7 +509,7 @@ func init() {
         }
       }
     },
-    "Error_V1": {
+    "Error.v1": {
       "description": "A standard error object.",
       "type": "object",
       "title": "Error",
