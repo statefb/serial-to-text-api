@@ -2,7 +2,7 @@ name: redoc
 on:
   push:
     branches:
-      - main
+      - master
 jobs:
   build-redoc:
     runs-on: ubuntu-latest
@@ -14,7 +14,7 @@ jobs:
       - name: Redoc cli github action
         uses: seeebiii/redoc-cli-github-action@v9
         with:
-          args: 'bundle swagger/serial-csv-converter.v1.yaml -o index.html'
+          args: "bundle swagger/serial-csv-converter.v1.yaml -o index.html"
 
       - name: Check build result
         run: |
