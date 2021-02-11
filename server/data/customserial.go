@@ -87,7 +87,7 @@ func (s *CustomSerial) Readline(ctx context.Context) {
 func read(p *serial.Port) string {
 	buf := make([]byte, 128)
 	n, err := p.Read(buf)
-	if err != nil {
+	if err != nil && err.Error() != "EOF" {
 		panic(err)
 	}
 	return string(buf[:n])
