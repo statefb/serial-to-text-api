@@ -20,3 +20,5 @@ sender:
     uri: "ftp:21"
     name: anonymous
     password: password
+  local:
+    path: "/go/src/app/local/test_local.json"

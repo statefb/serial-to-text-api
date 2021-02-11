@@ -6,6 +6,7 @@ import (
 	"local.packages/config"
 	"local.packages/converter"
 	"local.packages/data"
+	"local.packages/gen/models"
 
 	"github.com/jlaffaye/ftp"
 )
@@ -28,7 +29,7 @@ func NewFTPSender() *FTPSender {
 	}
 }
 
-func (s *FTPSender) Send() error {
+func (s *FTPSender) Send(body []*models.CollectedData) error {
 	client, err := ftp.Connect(s.Uri)
 	if err != nil {
 		return err
@@ -41,7 +42,7 @@ func (s *FTPSender) Send() error {
 	}
 
 	kd := data.GetKeyData()
-	cd := data.GetData()
+	cd := convertCollectData(body)
 	converter := converter.NewJsonConverter(
 		&kd, &cd,
 	)
@@ -65,4 +66,13 @@ func (s *FTPSender) Send() error {
 	}
 
 	return nil
+}
+
+func (s *FTPSender) SendAll() error {
+	d := data.GetData()
+	dat := make([]*models.CollectedData, len(d))
+	for i := 0; i < len(d); i++ {
+		dat[i] = &d[i]
+	}
+	return s.Send(dat)
 }
